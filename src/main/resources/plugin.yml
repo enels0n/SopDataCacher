@@ -1,0 +1,14 @@
+name: SopDataCacher
+main: net.enelson.sopdatacacher.SopDataCacher
+version: ${project.version}
+authors: [E_NeLsOn]
+depend: [PlaceholderAPI]
+api-version: 1.16
+commands:
+  sopdatacacher:
+    aliases: [adatacacher, adatacasher]
+permissions:
+  sopdatacacher.admin:
+    default: op
+  adatacacher.admin:
+    default: op

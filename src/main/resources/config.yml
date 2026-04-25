@@ -1,0 +1,88 @@
+placeholders-update-time: 10
+
+named-placeholders:
+  skin:
+    placeholder: "%skinsrestorer_texture_url_or_steve%"
+    default: "http://textures.minecraft.net/texture/80ac5d67376405fa0ced4035cdb0e0eb4144d4761b0f846097294dc118cf43e"
+
+  kills:
+    placeholder: "%playerstats_only:number_raw,me,player_kills%"
+    default: "0"
+    format: none
+    top-line:
+      width: 32
+      filler: "."
+      template: "&a{name} &8{fill} &a{value}"
+      use-minecraft-width: true
+      min-fill: 3
+
+  playtime_raw:
+    placeholder: "%playerstats_only:number_raw,me,total_world_time%"
+    default: "0"
+    format: none
+    top-line:
+      width: 34
+      filler: "."
+      template: "&a{name} &8{fill} &a{value}"
+      use-minecraft-width: true
+      min-fill: 3
+
+  playtime:
+    placeholder: "%playerstats_only:number_raw,me,total_world_time%"
+    default: "0"
+    format: duration
+
+  deaths:
+    placeholder: "%playerstats_only:number_raw,me,deaths%"
+    default: "0"
+    format: none
+    top-line:
+      width: 32
+      filler: "."
+      template: "&c{name} &8{fill} &c{value}"
+      use-minecraft-width: true
+      min-fill: 3
+
+  mob_kills:
+    placeholder: "%playerstats_only:number_raw,me,mob_kills%"
+    default: "0"
+    format: none
+    top-line:
+      width: 32
+      filler: "."
+      template: "&e{name} &8{fill} &e{value}"
+      use-minecraft-width: true
+      min-fill: 3
+
+  walk:
+    placeholder: "%playerstats_only:number_raw,me,walk_one_cm%"
+    default: "0"
+    format: none
+    top-line:
+      width: 32
+      filler: "."
+      template: "&b{name} &8{fill} &b{value}"
+      use-minecraft-width: true
+      min-fill: 3
+
+  balance:
+    placeholder: "%vault_eco_balance%"
+    default: "0"
+    format: none
+    top-line:
+      width: 36
+      filler: "."
+      template: "&a{name} &8{fill} &2$&a{value}"
+      use-minecraft-width: true
+      min-fill: 3
+
+  advancements:
+    placeholder: "%Advancements_completedAmount%"
+    default: "0"
+    format: none
+    top-line:
+      width: 32
+      filler: "."
+      template: "&6{name} &8{fill} &6{value}"
+      use-minecraft-width: true
+      min-fill: 3
