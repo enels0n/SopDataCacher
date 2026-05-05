@@ -4,6 +4,7 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import net.enelson.sopdatacacher.SopDataCacher;
 import net.enelson.sopdatacacher.data.DataManager;
+import net.enelson.sopdatacacher.util.StringUtils;
 import org.bukkit.entity.Player;
 
 import java.util.regex.Matcher;
@@ -122,7 +123,7 @@ public class PlaceholderExtention extends PlaceholderExpansion {
     }
 
     private String resolveValue(DataManager dataManager, String player, String alias, String explicitFormat, Integer precision) {
-        if (player == null || player.isBlank()) {
+        if (StringUtils.isBlank(player)) {
             return "null";
         }
 
@@ -141,14 +142,14 @@ public class PlaceholderExtention extends PlaceholderExpansion {
 
     private static String groupOrNull(Matcher matcher, String group) {
         String value = matcher.group(group);
-        if (value == null || value.isBlank()) {
+        if (StringUtils.isBlank(value)) {
             return null;
         }
         return value.toLowerCase();
     }
 
     private static Integer parsePrecision(String raw) {
-        if (raw == null || raw.isBlank()) {
+        if (StringUtils.isBlank(raw)) {
             return null;
         }
         try {

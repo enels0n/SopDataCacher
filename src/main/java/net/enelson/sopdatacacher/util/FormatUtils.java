@@ -19,10 +19,10 @@ public final class FormatUtils {
     }
 
     public static String resolveFormat(String explicitFormat, String configuredFormat) {
-        if (explicitFormat != null && !explicitFormat.isBlank()) {
+        if (!StringUtils.isBlank(explicitFormat)) {
             return explicitFormat.toLowerCase();
         }
-        if (configuredFormat != null && !configuredFormat.isBlank()) {
+        if (!StringUtils.isBlank(configuredFormat)) {
             return configuredFormat.toLowerCase();
         }
         return "none";

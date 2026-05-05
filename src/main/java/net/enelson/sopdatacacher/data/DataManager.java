@@ -7,6 +7,7 @@ import net.enelson.sopdatacacher.model.TopLineSettings;
 import net.enelson.sopdatacacher.tops.Top;
 import net.enelson.sopdatacacher.tops.TopElement;
 import net.enelson.sopdatacacher.util.FormatUtils;
+import net.enelson.sopdatacacher.util.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -105,7 +106,7 @@ public class DataManager {
                     int pos = Integer.parseInt(keyStr);
                     String posTemplate = posSection.getString(keyStr);
 
-                    if (posTemplate != null && !posTemplate.isBlank()) {
+                    if (!StringUtils.isBlank(posTemplate)) {
                         positionTemplates.put(pos, posTemplate);
                     }
                 } catch (NumberFormatException ignored) {
@@ -121,7 +122,7 @@ public class DataManager {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 for (CachedPlaceholder cached : placeholders.values()) {
                     String rawValue = PlaceholderAPI.setPlaceholders(player, cached.getPlaceholder());
-                    if (rawValue == null || rawValue.isBlank()) {
+                    if (StringUtils.isBlank(rawValue)) {
                         rawValue = cached.getDefaultValue();
                     }
                     plugin.getSQLManager().updatePlayerDataField(player.getName(), cached.getAlias(), rawValue);
@@ -188,7 +189,7 @@ public class DataManager {
     }
 
     public String getCachedValueRaw(String player, String alias) {
-        if (player == null || player.isBlank()) {
+        if (StringUtils.isBlank(player)) {
             return null;
         }
         CachedPlaceholder cached = getPlaceholder(alias);
@@ -197,7 +198,7 @@ public class DataManager {
         }
 
         String value = plugin.getSQLManager().getPlayerDataField(player, cached.getAlias());
-        if (value == null || value.isBlank()) {
+        if (StringUtils.isBlank(value)) {
             return cached.getDefaultValue();
         }
         return value;
@@ -205,11 +206,11 @@ public class DataManager {
 
     public String getCachedValueFormatted(String player, String alias, String explicitFormat, Integer precision) {
         String raw = getCachedValueRaw(player, alias);
-        if (raw == null || raw.isBlank()) {
+        if (StringUtils.isBlank(raw)) {
             raw = getDefault(alias);
         }
         String format = FormatUtils.resolveFormat(explicitFormat, getConfiguredFormat(alias));
-        return FormatUtils.applyFormat(raw, format, precision, explicitFormat != null && !explicitFormat.isBlank());
+        return FormatUtils.applyFormat(raw, format, precision, !StringUtils.isBlank(explicitFormat));
     }
 
     public String getTopName(String alias, int position) {
@@ -239,7 +240,7 @@ public class DataManager {
             return null;
         }
         String format = FormatUtils.resolveFormat(explicitFormat, getConfiguredFormat(alias));
-        return FormatUtils.applyFormat(raw, format, precision, explicitFormat != null && !explicitFormat.isBlank());
+        return FormatUtils.applyFormat(raw, format, precision, !StringUtils.isBlank(explicitFormat));
     }
 
     public String getFormattedTopLine(String sortAlias, int position, String explicitFormat, Integer precision) {
@@ -248,7 +249,7 @@ public class DataManager {
 
     public String getFormattedTopLine(String sortAlias, String valueAlias, int position, String explicitFormat, Integer precision) {
         String name = getTopName(sortAlias, position);
-        if (name == null || name.isBlank()) {
+        if (StringUtils.isBlank(name)) {
             name = "---";
         }
 
@@ -259,7 +260,7 @@ public class DataManager {
             value = getCachedValueFormatted(name, valueAlias, explicitFormat, precision);
         }
 
-        if (value == null || value.isBlank()) {
+        if (StringUtils.isBlank(value)) {
             value = "0";
         }
 

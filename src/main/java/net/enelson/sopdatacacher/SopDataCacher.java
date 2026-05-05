@@ -33,7 +33,6 @@ public class SopDataCacher extends JavaPlugin implements CommandExecutor {
 
         if (getServer().getPluginManager().isPluginEnabled("PlaceholderAPI")) {
             new PlaceholderExtention("sopdatacacher").register();
-            new PlaceholderExtention("adatacacher").register();
         } else {
             getLogger().warning("PlaceholderAPI not found. Placeholders will not be available.");
         }

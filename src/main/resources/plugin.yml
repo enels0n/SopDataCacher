@@ -6,7 +6,6 @@ depend: [PlaceholderAPI]
 api-version: 1.16
 commands:
   sopdatacacher:
-    aliases: [adatacacher, adatacasher]
 permissions:
   sopdatacacher.admin:
     default: op
