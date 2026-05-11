@@ -1,88 +1,120 @@
 placeholders-update-time: 10
 
+# Demo config that showcases all major SopDataCacher capabilities:
+# - cached aliases
+# - numeric formats (none/int/floor/ceil/round/duration/duration_ticks/divide_*)
+# - top-line rendering settings
+# - per-position templates for top lines
 named-placeholders:
+  # Keep this alias for skin URL fallback usage.
   skin:
     placeholder: "%skinsrestorer_texture_url_or_steve%"
     default: "http://textures.minecraft.net/texture/80ac5d67376405fa0ced4035cdb0e0eb4144d4761b0f846097294dc118cf43e"
+    format: none
 
+  # Requested SopPillars integration example.
+  wins:
+    placeholder: "%soppillars_stats_wins%"
+    default: "0"
+    format: int
+    top-line:
+      width: 34
+      filler: "."
+      template: "&a#{pos} &f{name} &8{fill} &a{value}"
+      use-minecraft-width: true
+      min-fill: 3
+      position-templates:
+        "1": "&6#{pos} &e{name} &8{fill} &6{value}"
+        "2": "&7#{pos} &f{name} &8{fill} &f{value}"
+        "3": "&c#{pos} &f{name} &8{fill} &c{value}"
+
+  # Keep this alias for economy integration.
+  balance:
+    placeholder: "%vault_eco_balance%"
+    default: "0"
+    format: round
+    top-line:
+      width: 38
+      filler: "."
+      template: "&2#{pos} &a{name} &8{fill} &2$&a{value}"
+      use-minecraft-width: true
+      min-fill: 3
+      position-templates:
+        "1": "&6#{pos} &e{name} &8{fill} &6$&e{value}"
+
+  # Raw numeric top (no formatting).
   kills:
     placeholder: "%playerstats_only:number_raw,me,player_kills%"
     default: "0"
     format: none
     top-line:
-      width: 32
+      width: 34
       filler: "."
-      template: "&a{name} &8{fill} &a{value}"
+      template: "&c#{pos} &f{name} &8{fill} &c{value}"
       use-minecraft-width: true
       min-fill: 3
 
-  playtime_raw:
-    placeholder: "%playerstats_only:number_raw,me,total_world_time%"
+  # Integer cast example.
+  deaths:
+    placeholder: "%playerstats_only:number_raw,me,deaths%"
     default: "0"
-    format: none
+    format: int
     top-line:
       width: 34
       filler: "."
-      template: "&a{name} &8{fill} &a{value}"
+      template: "&4#{pos} &f{name} &8{fill} &4{value}"
       use-minecraft-width: true
       min-fill: 3
 
-  playtime:
+  # Floor example (handy for ratios/time conversions).
+  mob_kills_floor:
+    placeholder: "%playerstats_only:number_raw,me,mob_kills%"
+    default: "0"
+    format: floor
+
+  # Ceil example.
+  walk_ceil:
+    placeholder: "%playerstats_only:number_raw,me,walk_one_cm%"
+    default: "0"
+    format: ceil
+
+  # Duration from seconds.
+  playtime_seconds:
     placeholder: "%playerstats_only:number_raw,me,total_world_time%"
     default: "0"
     format: duration
 
-  deaths:
-    placeholder: "%playerstats_only:number_raw,me,deaths%"
+  # Duration from ticks.
+  playtime_ticks:
+    placeholder: "%playerstats_only:number_raw,me,total_world_time%"
     default: "0"
-    format: none
-    top-line:
-      width: 32
-      filler: "."
-      template: "&c{name} &8{fill} &c{value}"
-      use-minecraft-width: true
-      min-fill: 3
+    format: duration_ticks
 
-  mob_kills:
-    placeholder: "%playerstats_only:number_raw,me,mob_kills%"
-    default: "0"
-    format: none
-    top-line:
-      width: 32
-      filler: "."
-      template: "&e{name} &8{fill} &e{value}"
-      use-minecraft-width: true
-      min-fill: 3
-
-  walk:
+  # divide_<divisor> example.
+  walk_km:
     placeholder: "%playerstats_only:number_raw,me,walk_one_cm%"
     default: "0"
-    format: none
-    top-line:
-      width: 32
-      filler: "."
-      template: "&b{name} &8{fill} &b{value}"
-      use-minecraft-width: true
-      min-fill: 3
+    format: divide_100000
 
-  balance:
-    placeholder: "%vault_eco_balance%"
+  # divide_<divisor>_<mode> example.
+  walk_km_round:
+    placeholder: "%playerstats_only:number_raw,me,walk_one_cm%"
     default: "0"
-    format: none
-    top-line:
-      width: 36
-      filler: "."
-      template: "&a{name} &8{fill} &2$&a{value}"
-      use-minecraft-width: true
-      min-fill: 3
+    format: divide_100000_round
+
+  # divide_<divisor>_<mode>_<precision> example.
+  walk_km_round_2:
+    placeholder: "%playerstats_only:number_raw,me,walk_one_cm%"
+    default: "0"
+    format: divide_100000_round_2
 
   advancements:
     placeholder: "%Advancements_completedAmount%"
     default: "0"
-    format: none
+    format: int
     top-line:
-      width: 32
+      width: 34
       filler: "."
-      template: "&6{name} &8{fill} &6{value}"
+      template: "&6#{pos} &f{name} &8{fill} &6{value}"
       use-minecraft-width: true
       min-fill: 3
