@@ -72,7 +72,7 @@ public class SopDataCacher extends JavaPlugin implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!sender.hasPermission("sopdatacacher.admin") && !sender.hasPermission("adatacacher.admin")) {
+        if (!sender.hasPermission("sopdatacacher.admin")) {
             sender.sendMessage(ChatColor.RED + "No permission.");
             return true;
         }

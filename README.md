@@ -51,7 +51,6 @@ Output JAR:
 ## Permissions
 
 - `sopdatacacher.admin` (default: `op`)
-- `adatacacher.admin` (legacy/compat key kept by plugin command check)
 
 ## How It Works
 

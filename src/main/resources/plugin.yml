@@ -9,5 +9,3 @@ commands:
 permissions:
   sopdatacacher.admin:
     default: op
-  adatacacher.admin:
-    default: op
